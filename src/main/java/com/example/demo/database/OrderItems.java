@@ -10,6 +10,10 @@ public class OrderItems {
     private int product_id;
     private int quantity;
 
+    public OrderItems() {
+
+    }
+
     public long getOrder_id() {
         return order_id;
     }

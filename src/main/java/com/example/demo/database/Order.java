@@ -1,14 +1,14 @@
 package com.example.demo.database;
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table
-public class Orders {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
+    @Column
     private long order_id;
 
     private long customer_id;
@@ -17,16 +17,15 @@ public class Orders {
 
     private String date_time;
 
-    public Orders(long order_id, long customer_id, int total_amount) {
+    public Order(long order_id, long customer_id, int total_amount) {
         this.order_id = order_id;
         this.customer_id = customer_id;
         this.total_amount = total_amount;
-        LocalDate issuanceDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        this.date_time= issuanceDate.format(formatter);
+        LocalDateTime now = LocalDateTime.now();
+        this.date_time= now.toString();
     }
 
-    public Orders() {
+    public Order() {
 
     }
 

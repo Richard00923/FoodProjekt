@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 
-public class Customers {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customerId", nullable = false)
     private long customer_id;
     private CustomerType customer_type;
     private long loyalty_card;
 
-    public Customers() {
+    public Customer() {
     }
 
     public long getCustomer_id() {
@@ -31,15 +31,8 @@ public class Customers {
         return customer_type;
     }
 
-    public Customers(CustomerType customer_type, long loyalty_card) {
+    public Customer(CustomerType customer_type) {
         this.customer_type = customer_type;
-        if (customer_type.equals(CustomerType.Guest)) {
-            this.loyalty_card = Long.parseLong(null);
-        } else {
-            this.loyalty_card = loyalty_card;
-
-        }
-
     }
 
     public void setValue(CustomerType value) {
