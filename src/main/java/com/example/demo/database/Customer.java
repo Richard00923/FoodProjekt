@@ -7,35 +7,35 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId", nullable = false)
-    private long customer_id;
-    private CustomerType customer_type;
-    private long loyalty_card;
+    @Column(name = "customer_id", nullable = false)
+    private long customerId;
+    private CustomerType customerType;
+    private long loyaltyCard;
 
     public Customer() {
     }
 
-    public long getCustomer_id() {
-        return customer_id;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public long getLoyalty_card() {
-        return loyalty_card;
+    public long getLoyaltyCard() {
+        return loyaltyCard;
     }
 
-    public void setLoyalty_card(int loyalty_card) {
-        this.loyalty_card = loyalty_card;
+    public void setLoyaltyCard(int loyaltyCard) {
+        this.loyaltyCard = loyaltyCard;
     }
 
     public CustomerType getValue() {
-        return customer_type;
+        return customerType;
     }
 
-    public Customer(CustomerType customer_type) {
-        this.customer_type = customer_type;
+    public Customer(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
     public void setValue(CustomerType value) {
-        this.customer_type = value;
+        this.customerType = value;
     }
 }

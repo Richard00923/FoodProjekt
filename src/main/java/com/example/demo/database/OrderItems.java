@@ -6,34 +6,34 @@ import jakarta.persistence.*;
 @Table
 public class OrderItems {
     @Id
-    private long order_id;
-    private int product_id;
+    private long orderId;
+    private int productId;
     private int quantity;
 
     public OrderItems() {
 
     }
 
-    public long getOrder_id() {
-        return order_id;
+    public long getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(long order_id) {
-        this.order_id = order_id;
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public OrderItems(long order_id, int product_id, int quantity) {
-        this.order_id = order_id;
-        this.product_id = product_id;
+    public OrderItems(long orderId, int productId, int quantity) {
+        this.orderId = orderId;
+        this.productId = productId;
         this.quantity = quantity;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
