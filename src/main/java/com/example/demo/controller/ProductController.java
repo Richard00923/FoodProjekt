@@ -2,6 +2,7 @@ package com.example.demo.controller;
 import com.example.demo.database.Product;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.services.ProductService;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -24,8 +25,8 @@ public class ProductController {
         return productService.deleteProduct(id);
     }
     @GetMapping("/productsGet")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts() throws ChangeSetPersister.NotFoundException {
+        return (ResponseEntity<List<Product>>) productService.getAllProducts();
     }
     @PutMapping("/productUpdate/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {

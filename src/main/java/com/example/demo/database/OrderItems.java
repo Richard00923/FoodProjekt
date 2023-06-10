@@ -8,7 +8,7 @@ public class OrderItems {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_items_id")
-    private long orderItemsId;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "receipt_id")
@@ -20,11 +20,11 @@ public class OrderItems {
     }
 
     public long getOrderId() {
-        return orderItemsId;
+        return id;
     }
 
     public void setOrderId(long orderId) {
-        this.orderItemsId = orderId;
+        this.id = orderId;
     }
 
     public int getProductId() {
@@ -32,7 +32,7 @@ public class OrderItems {
     }
 
     public OrderItems(long orderId, int productId, int quantity) {
-        this.orderItemsId = orderId;
+        this.id = orderId;
         this.productId = productId;
         this.quantity = quantity;
     }

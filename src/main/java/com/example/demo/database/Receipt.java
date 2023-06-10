@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -15,13 +15,14 @@ public class Receipt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long receiptId;
+    private long id;
 
     private long customerId;
 
     private int totalAmount;
 
-    private Date dateTime;
+    @Column
+    private LocalDate date;
 
     @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
     private List<OrderItems> orderItems;
@@ -32,16 +33,5 @@ public class Receipt {
     public Receipt(long customerId, List<OrderItems> orderItems) {
         this.customerId = customerId;
         this.orderItems = orderItems;
-        calculateTotalAmount();
-
-    }
-
-    private void calculateTotalAmount() {
-        int total = 0;
-        for (OrderItems orderItem : orderItems) {
-            total += orderItem.getQuantity();
-        }
-        this.totalAmount = total;
-        this.dateTime = new Date();
     }
 }

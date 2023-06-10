@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface ReceiptRepository extends JpaRepository<Receipt, Long> {
 
-    List<Receipt> findByDateTime(Date dateTime);
+    List<Receipt> findByDate(Date date);
 
-    List<Receipt> findByDateTimeAndCustomerId(Date dateTime, long customerId);
+    List<Receipt> findByDateAndCustomerId(Date date, long customerId);
 
     List<Receipt> findByCustomerId(long customerId);
 }

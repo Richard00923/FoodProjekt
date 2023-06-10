@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.database.Product;
 import com.example.demo.repository.ProductRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,18 +30,18 @@ public class ProductService  {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
     }
-    public ResponseEntity<List<Product>> getAllProducts(){
+    public List<Product> getAllProducts() throws ChangeSetPersister.NotFoundException {
         List<Product> products = productRepository.findAll();
         if (!products.isEmpty()) {
-            return ResponseEntity.ok(products);
+            return products;
         } else {
-            return ResponseEntity.notFound().build();
+            throw new ChangeSetPersister.NotFoundException();
         }
     }
 
-    public ResponseEntity<Product> updateProduct(long id, Product updateProduct){
+    public ResponseEntity<Product> updateProduct(long id, Product updateProduct) {
         Optional<Product> existingProduct = productRepository.findById(id);
-        if(existingProduct.isPresent()){
+        if (existingProduct.isPresent()) {
             Product product = existingProduct.get();
             product.setName(updateProduct.getName());
             product.setPrice(updateProduct.getPrice());
@@ -49,7 +50,7 @@ public class ProductService  {
         } else {
             return ResponseEntity.notFound().build();
         }
-        }
     }
+}
 
 
