@@ -21,42 +21,42 @@ public class ReceiptService {
     }
 
     public Receipt createReceipt(long customerId, List<OrderItems> orderItems) {
-        // Логіка створення чеку
+        // Logic for creating a receipt
         Receipt receipt = new Receipt(customerId, orderItems);
         calculateTotalAmount(receipt);
         return receiptRepository.save(receipt);
     }
 
     public List<Receipt> getAllReceipts() {
-        // Логіка отримання всіх чеків
+        // Logic for retrieving all receipts
         return receiptRepository.findAll();
     }
 
     public Receipt getReceiptById(long id) throws ChangeSetPersister.NotFoundException {
-        // Логіка отримання чеку за ідентифікатором
+        // Logic for retrieving a receipt by its identifier
         return receiptRepository.findById(id)
                 .orElseThrow(ChangeSetPersister.NotFoundException::new);
     }
 
     public List<Receipt> searchReceipts(Date date, Long id) {
-        // Логіка пошуку чеків за датою та покупцем
+        // Logic for searching receipts by date and customer ID
         if (date != null && id != null) {
-            // Шукати за датою та покупцем
+            // Search by date and customer ID
             return receiptRepository.findByDateAndCustomerId(date, id);
         } else if (date != null) {
-            // Шукати за датою
+            // Search by date
             return receiptRepository.findByDate(date);
         } else if (id != null) {
-            // Шукати за покупцем
+            // Search by customer ID
             return receiptRepository.findByCustomerId(id);
         } else {
-            // Повернути всі чеки
+            // Return all receipts
             return getAllReceipts();
         }
     }
 
     public void deleteReceipt(long id) {
-        // Логіка видалення чеку
+        // Logic for deleting a receipt
         try {
             receiptRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -76,3 +76,4 @@ public class ReceiptService {
         return receipt;
     }
 }
+
