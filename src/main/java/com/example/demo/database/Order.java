@@ -1,14 +1,17 @@
 package com.example.demo.database;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "orders", schema = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id")
+    @Column(name = "id")
     private long orderId;
 
     @Column(name = "customer_id")
@@ -29,7 +32,6 @@ public class Order {
     }
 
     public Order() {
-
     }
 
     public long getOrderId() {

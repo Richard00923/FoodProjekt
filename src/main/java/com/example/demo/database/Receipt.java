@@ -22,7 +22,7 @@ public class Receipt {
     private int totalAmount;
 
     @Column
-    private LocalDate date;
+    private LocalDate currentDate;
 
     @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
     private List<OrderItems> orderItems;

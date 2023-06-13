@@ -39,17 +39,14 @@ public class ProductService  {
         }
     }
 
-    public ResponseEntity<Product> updateProduct(long id, Product updateProduct) {
-        Optional<Product> existingProduct = productRepository.findById(id);
-        if (existingProduct.isPresent()) {
-            Product product = existingProduct.get();
-            product.setName(updateProduct.getName());
-            product.setPrice(updateProduct.getPrice());
-            Product updated = productRepository.save(product);
-            return ResponseEntity.ok(updated);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Product> updateProduct(long id, Product updateProduct) throws ChangeSetPersister.NotFoundException {
+        Product product = productRepository.findById(id)
+                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+        product.setName(updateProduct.getName());
+        product.setPrice(updateProduct.getPrice());
+        Product updated = productRepository.save(product);
+
+        return ResponseEntity.ok(updated);
     }
 }
 

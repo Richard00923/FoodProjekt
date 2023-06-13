@@ -25,11 +25,11 @@ public class ProductController {
         return productService.deleteProduct(id);
     }
     @GetMapping("/productsGet")
-    public ResponseEntity<List<Product>> getAllProducts() throws ChangeSetPersister.NotFoundException {
-        return (ResponseEntity<List<Product>>) productService.getAllProducts();
+    public List<Product> getAllProducts() throws ChangeSetPersister.NotFoundException {
+        return productService.getAllProducts();
     }
     @PutMapping("/productUpdate/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) throws ChangeSetPersister.NotFoundException {
        return productService.updateProduct(id,updatedProduct);
     }
 }
