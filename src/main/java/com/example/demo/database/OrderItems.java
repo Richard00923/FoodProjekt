@@ -6,20 +6,25 @@ import jakarta.persistence.*;
 @Table
 public class OrderItems {
     @Id
-    private long orderId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order_items_id")
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "receipt_id")
+    private Receipt receipt;
     private int productId;
     private int quantity;
 
     public OrderItems() {
-
     }
 
     public long getOrderId() {
-        return orderId;
+        return id;
     }
 
     public void setOrderId(long orderId) {
-        this.orderId = orderId;
+        this.id = orderId;
     }
 
     public int getProductId() {
@@ -27,7 +32,7 @@ public class OrderItems {
     }
 
     public OrderItems(long orderId, int productId, int quantity) {
-        this.orderId = orderId;
+        this.id = orderId;
         this.productId = productId;
         this.quantity = quantity;
     }

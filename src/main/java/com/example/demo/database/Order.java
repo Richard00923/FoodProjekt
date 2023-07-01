@@ -1,20 +1,26 @@
 package com.example.demo.database;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
 @Entity
-@Table
+@Table(name = "orders", schema = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "id")
     private long orderId;
 
+    @Column(name = "customer_id")
     private long customerId;
 
+    @Column(name = "total_amount")
     private int totalAmount;
 
+    @Column(name = "date_time")
     private String dateTime;
 
     public Order(long orderId, long customerId, int totalAmount) {
@@ -26,7 +32,6 @@ public class Order {
     }
 
     public Order() {
-
     }
 
     public long getOrderId() {
